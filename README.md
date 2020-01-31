@@ -12,4 +12,4 @@
 - tascigorkem (Görkem TAŞÇI)
 - furkanaksin (Furkan AKSIN)
 - onurcelikeng (Onur ÇELİK)
-- (Kadir Şinas KAYNAK)
+- kadirsinas (Kadir Şinas KAYNAK)
