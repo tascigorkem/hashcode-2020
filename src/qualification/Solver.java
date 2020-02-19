@@ -1,10 +1,17 @@
 package qualification;
 
+import qualification.bean.Input;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Solver {
 
-    public List<String> solve(Hashcode2020Problem hashcode2020Problem) {
-        return null;
+    public static List<String> solve(Input input) {
+        return new ArrayList<>();
+    }
+
+    public static Integer compare() {
+        return 0;
     }
 }

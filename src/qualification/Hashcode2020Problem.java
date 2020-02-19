@@ -1,83 +1,32 @@
 package qualification;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
+import qualification.bean.Input;
+import qualification.bean.Output;
+
+import java.io.File;
 import java.util.List;
 
 public class Hashcode2020Problem {
 
+    public static void main(String[] args) throws Exception {
+//        args = new String[]{"a_example", "b_lovely_landscapes", "c_memorable_moments", "d_pet_pictures", "e_shiny_selfies"};
+        args = new String[]{"a_example"};
 
-
-    public static void main(String[] args) {
-
-    }
-
-    public Hashcode2020Problem() {
-
-
-    }
-
-    public List<String> solve() {
-        return null;
-    }
-
-    protected static void save(String filename) {
-        BufferedWriter bw = null;
-        try {
-            bw = new BufferedWriter(new FileWriter(filename));
-
-            bw.flush();
-        } catch (Exception ex) {
-            System.err.println("Err"+ ex.getMessage());
-        } finally {
-            if (bw != null) {
-                try {
-                    bw.close();
-                } catch (Exception ex) {
-                    System.err.println(ex.getMessage());
-                }
-            }
+        for (String s : args) {
+            process(s);
         }
     }
 
-    protected static Hashcode2020Problem load(String filename) {
-        BufferedReader br = null;
+    static void process(String fileName) throws Exception {
+        File inFile = new File("src/resources/in/" + fileName + ".txt");
+        Input input = Translator.getInput(inFile);
 
-        int n = 0;
-        List<String> photos = new ArrayList<>();
-        try {
-            br = new BufferedReader(new FileReader(filename));
-            int lineNo = 0;
+        List<String> slidesLines = Solver.solve(input);
 
-            while (br.ready()) {
-                // Get details
-                if (lineNo == 0) {
-                    String line = br.readLine();
-                    n = Integer.parseInt(line);
-                } else {
-                    for (int j = 0; j < n; j++) {
-                        String line = br.readLine();
-                        String[] sp = line.split(" ");
-                    }
-                }
-//
-                lineNo++;
-            }
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception ex) {
-                    System.err.println(ex.getMessage());
-                }
-            }
-        }
-
-        return (new Hashcode2020Problem());
+        Output output = new Output();
+        output.setSlidesCount(slidesLines.size());
+        output.setSlidesLines(slidesLines);
+        File outFile = new File("src/resources/out/" + fileName.split("_")[0] + ".out");
+        Translator.writeOutput(output, outFile);
     }
 }
