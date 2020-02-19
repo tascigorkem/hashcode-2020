@@ -1,6 +1,7 @@
 # Google Hash Code Problem 2020 
 
-Google Hash Code Problem 2020 Solution
+OverEngineers  Team solution for [Google Hashcode 2020](https://codingcompetitions.withgoogle.com/hashcode).
+
 
 ## Qualification Problem
 
