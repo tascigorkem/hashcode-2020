@@ -8,6 +8,7 @@ import qualification.bean.Output;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,8 +17,11 @@ import java.util.stream.Collectors;
  */
 public class Translator {
 
+    private Translator() {
+    }
+
     // Obtain Input Bean from Input File
-    public static Input getInput(File file) throws Exception {
+    public static Input getInput(File file) throws IOException {
         Input input = new Input();
         boolean firstLine = true;
         boolean secondLine = true;
@@ -43,8 +47,10 @@ public class Translator {
                         book.setName("book " + bookCount);
                         book.setScore(Integer.parseInt(score));
                         book.setScanned(false);
-                        books.add(book);
-                        bookCount++;
+                        if (Integer.parseInt(score) != 0) {
+                            books.add(book);
+                            bookCount++;
+                        }
 
                     }
                     secondLine = false;
@@ -57,19 +63,17 @@ public class Translator {
 
                     String secondLibraryLine = br.readLine();
                     List<String> bookIds = Arrays.asList(secondLibraryLine.split(" "));
-                    List<Integer> bookIdsInteger = bookIds.stream().map(bookId -> Integer.parseInt(bookId)).collect(Collectors.toList());
-                    List<Book> retainBooks = books.stream().filter(book -> bookIdsInteger.contains(book.getId())).collect(Collectors.toList());
+
+                    List<Integer> bookIdsInteger = bookIds.stream()
+                            .map(Integer::parseInt)
+                            .collect(Collectors.toList());
+
+                    List<Book> retainBooks = books.stream()
+                            .filter(book -> bookIdsInteger.contains(book.getId()))
+                            .sorted(Comparator.comparing(Book::getScore).reversed())
+                            .collect(Collectors.toList());
+
                     library.setBooks(retainBooks);
-
-                    Integer totalScore = 0;
-
-                    List<Integer> scores = retainBooks.stream().map(Book::getScore).collect(Collectors.toList());
-                    for (Integer score :
-                            scores) {
-                        totalScore += score;
-                    }
-
-                    library.setTotalScore(totalScore);
 
                     libraries.add(library);
                     libraryCount++;
@@ -82,26 +86,28 @@ public class Translator {
     }
 
     // Write Output File from Output Bean
-    public static void writeOutput(Output output, File outFile) throws Exception {
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile)))) {
-            writer.write("" + output.getLibraryCount() + "\n");
+    public static void writeOutput(Output output, File outFile) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile)))) {
+            writer.write("" + output.getLibraryCount());
+            writer.newLine();
             if (output.getLibraries() != null) {
                 for (Library library : output.getLibraries()) {
-
                     List<Book> scannedBooks = library.getBooks().stream().filter(book -> book.getScanned().equals(Boolean.TRUE)).collect(Collectors.toList());
-                    writer.write("" +
-                            library.getId() + " " + scannedBooks.size() +
-                            "\n");
+                    if (!scannedBooks.isEmpty()) {
 
-                    StringBuilder scannedBookLine = new StringBuilder();
-                    for (Book scannedBook :
-                            scannedBooks) {
-                        scannedBookLine.append(" ").append(scannedBook.getId());
+                        writer.write(library.getId() + " " + scannedBooks.size());
+                        writer.newLine();
+
+                        StringBuilder scannedBookLine = new StringBuilder();
+                        for (Book scannedBook :
+                                scannedBooks) {
+                            scannedBookLine.append(" ").append(scannedBook.getId());
+                        }
+                        writer.write("" + scannedBookLine.toString().trim() + "");
+                        writer.newLine();
                     }
-                    writer.write("" +
-                            scannedBookLine +
-                            "\n");
                 }
+                writer.write(" ");
             }
         }
     }

@@ -9,7 +9,10 @@ public class Library {
     List<Book> books;
     Integer totalScore;
     Integer shippedBookCountPerDay;
+    Double valuePerDay; // totalScore / shippedBookCountPerDay
+    Double finalScore; // valuePerDay - signUpProcessDay
     Integer signUpProcessDay;
+    Integer maxScoredBook;
 
     public Integer getId() {
         return id;
@@ -57,5 +60,29 @@ public class Library {
 
     public void setTotalScore(Integer totalScore) {
         this.totalScore = totalScore;
+    }
+
+    public Double getValuePerDay() {
+        return valuePerDay;
+    }
+
+    public void setValuePerDay(Double valuePerDay) {
+        this.valuePerDay = valuePerDay;
+    }
+
+    public Double getFinalScore() {
+        return finalScore;
+    }
+
+    public void setFinalScore(Double finalScore) {
+        this.finalScore = finalScore;
+    }
+
+    public Integer getMaxScoredBook() {
+        return maxScoredBook;
+    }
+
+    public void setMaxScoredBook(Integer maxScoredBook) {
+        this.maxScoredBook = maxScoredBook;
     }
 }

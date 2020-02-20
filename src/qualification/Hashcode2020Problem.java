@@ -10,8 +10,8 @@ import java.util.List;
 public class Hashcode2020Problem {
 
     public static void main(String[] args) throws Exception {
-        //args = new String[]{"a_example", "b_read_on", "c_incunabula", "d_tough_choices", "e_so_many_books"};
-        args = new String[]{"a_example"};
+//        args = new String[]{"a_example", "b_read_on", "c_incunabula", "d_tough_choices", "e_so_many_books", "f_libraries_of_the_world"};
+        args = new String[]{"a_example", "b_read_on", "c_incunabula"};
 
         for (String s : args) {
             process(s);
@@ -19,6 +19,9 @@ public class Hashcode2020Problem {
     }
 
     static void process(String fileName) throws Exception {
+
+        long start = System.currentTimeMillis();
+
         File inFile = new File("src/resources/in/" + fileName + ".txt");
         Input input = Translator.getInput(inFile);
 
@@ -27,7 +30,13 @@ public class Hashcode2020Problem {
         Output output = new Output();
         output.setLibraryCount(libraries.size());
         output.setLibraries(libraries);
-        File outFile = new File("src/resources/out/" + fileName.split("_")[0] + ".out");
+
+        String prefixFile = fileName.split("_")[0];
+        File outFile = new File("src/resources/out/" + prefixFile + ".out");
         Translator.writeOutput(output, outFile);
+
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        System.out.println(prefixFile + " processed. Time: " + timeElapsed + " ms.");
     }
 }
