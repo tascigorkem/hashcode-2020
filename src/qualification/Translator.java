@@ -61,6 +61,16 @@ public class Translator {
                     List<Book> retainBooks = books.stream().filter(book -> bookIdsInteger.contains(book.getId())).collect(Collectors.toList());
                     library.setBooks(retainBooks);
 
+                    Integer totalScore = 0;
+
+                    List<Integer> scores = retainBooks.stream().map(Book::getScore).collect(Collectors.toList());
+                    for (Integer score :
+                            scores) {
+                        totalScore += score;
+                    }
+
+                    library.setTotalScore(totalScore);
+
                     libraries.add(library);
                     libraryCount++;
                 }

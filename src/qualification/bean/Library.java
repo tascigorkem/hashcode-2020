@@ -7,6 +7,7 @@ public class Library {
     Integer id;
     Integer bookCount;
     List<Book> books;
+    Integer totalScore;
     Integer shippedBookCountPerDay;
     Integer signUpProcessDay;
 
@@ -48,5 +49,13 @@ public class Library {
 
     public void setSignUpProcessDay(Integer signUpProcessDay) {
         this.signUpProcessDay = signUpProcessDay;
+    }
+
+    public Integer getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(Integer totalScore) {
+        this.totalScore = totalScore;
     }
 }
