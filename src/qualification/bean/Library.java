@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Library {
 
-    Integer id;
-    Integer bookCount;
-    List<Book> books;
-    Integer totalScore;
-    Integer shippedBookCountPerDay;
-    Double valuePerDay; // totalScore / shippedBookCountPerDay
-    Double finalScore; // valuePerDay - signUpProcessDay
-    Integer signUpProcessDay;
-    Integer maxScoredBook;
+    private Integer id;
+    private Integer bookCount;
+    private List<Book> books;
+    private Integer totalScore;
+    private Integer shippedBookCountPerDay;
+    private Double valuePerDay; // totalScore / shippedBookCountPerDay
+    private Double finalScore; // valuePerDay - signUpProcessDay
+    private Integer signUpProcessDay;
+    private Integer maxScoredBook;
 
     public Integer getId() {
         return id;

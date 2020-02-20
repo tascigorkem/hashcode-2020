@@ -31,12 +31,12 @@ public class Hashcode2020Problem {
         output.setLibraryCount(libraries.size());
         output.setLibraries(libraries);
 
-        String prefixFile = fileName.split("_")[0];
-        File outFile = new File("src/resources/out/" + prefixFile + ".out");
+        String prefixFileName = fileName.split("_")[0];
+        File outFile = new File("src/resources/out/" + prefixFileName + ".out");
         Translator.writeOutput(output, outFile);
 
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
-        System.out.println(prefixFile + " processed. Time: " + timeElapsed + " ms.");
+        System.out.println(prefixFileName + " processed. Time: " + timeElapsed + " ms.");
     }
 }

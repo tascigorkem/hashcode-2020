@@ -3,13 +3,13 @@ package qualification.bean;
 import java.util.List;
 
 public class Input {
-    int bookCount; // line1
-    int libraryCount; // line1
-    int dayCount; // line1
+    private int bookCount; // line1
+    private int libraryCount; // line1
+    private int dayCount; // line1
 
-    List<Book> books; // line2
+    private List<Book> books; // line2
 
-    List<Library> libraries; // other double lines
+    private List<Library> libraries; // other double lines
 
     public int getBookCount() {
         return bookCount;

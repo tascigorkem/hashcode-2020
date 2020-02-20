@@ -2,10 +2,10 @@ package qualification.bean;
 
 public class Book {
 
-    Integer id;
-    Boolean scanned;
-    Integer score;
-    String name;
+    private Integer id;
+    private Boolean scanned;
+    private Integer score;
+    private String name;
 
     public Integer getId() {
         return id;

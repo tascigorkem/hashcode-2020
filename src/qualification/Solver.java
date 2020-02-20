@@ -12,11 +12,10 @@ import java.util.stream.Collectors;
 
 public class Solver {
 
+    private static final Integer BUFFER = 50;
     private static List<Library> libraries;
     private static List<Library> sortedLibraries;
-
     private static Integer remainDay;
-    private static final Integer BUFFER = 50;
 
     private Solver() {
     }
@@ -25,71 +24,74 @@ public class Solver {
         libraries = new ArrayList<>();
         remainDay = input.getDayCount();
 
-        calculateScores(input.getLibraries());
+        sortedLibraries = input.getLibraries();
+        calculateScores();
+        sortedLibraries();
 
-        Integer libraryCount = 0;
+        Integer scannedLibraryCount = 0;
         for (Library library : sortedLibraries) {
 
             if (library.getSignUpProcessDay() < remainDay) {
                 remainDay -= library.getSignUpProcessDay();
-                processLibrary(library);
-            }
 
-            List<Book> scannedBooks = library.getBooks().stream().filter(book -> book.getScanned().equals(Boolean.TRUE)).collect(Collectors.toList());
-            if (!scannedBooks.isEmpty()) {
-                libraries.add(library);
-                libraryCount++;
-                if (libraryCount % BUFFER == 0) {
-                    calculateScores(sortedLibraries);
+                if (!scanBooks(library).isEmpty()) {
+                    libraries.add(library);
+                    scannedLibraryCount++;
+
+                    if (scannedLibraryCount % BUFFER == 0) {
+                        calculateScores();
+                        sortedLibraries();
+                    }
                 }
             }
         }
         return libraries;
     }
 
-    private static void processLibrary(Library library) {
-        List<Book> sortedBooks = library.getBooks().stream()
-                .sorted(Comparator.comparing(Book::getScore).reversed())
-                .collect(Collectors.toList());
-        library.setBooks(sortedBooks);
+    private static List<Book> scanBooks(Library library) {
 
+        List<Book> scannedBooks = new ArrayList<>();
         Integer maxScanBook = remainDay * library.getShippedBookCountPerDay();
-        Integer scannedBookCount = 0;
 
-        for (Book book : sortedBooks) {
+        Integer scannedBookCount = 0;
+        for (Book book : library.getBooks()) {
             if (scannedBookCount <= maxScanBook) {
                 book.setScanned(true);
+                scannedBookCount++;
+                scannedBooks.add(book);
             }
-            scannedBookCount++;
         }
+        return scannedBooks;
     }
 
-    private static void calculateScores(List<Library> libraries) {
-        libraries.forEach(library -> {
-            List<Book> unscannedBooks = library.getBooks()
+    private static void calculateScores() {
+        sortedLibraries.forEach(library -> {
+            List<Book> unScannedBooks = library.getBooks()
                     .stream().filter(book -> book.getScanned().equals(Boolean.FALSE))
                     .collect(Collectors.toList());
 
-            Integer totalScore = unscannedBooks.stream().map(Book::getScore).reduce(0, Integer::sum);
+            Integer totalScore = unScannedBooks.stream().map(Book::getScore).reduce(0, Integer::sum);
 
             library.setTotalScore(totalScore);
             library.setValuePerDay(Double.valueOf(library.getTotalScore()) / library.getShippedBookCountPerDay());
             library.setFinalScore(library.getValuePerDay() - library.getSignUpProcessDay());
 
-            Optional<Book> book = unscannedBooks.stream().max(Comparator.comparing(Book::getScore));
+            Optional<Book> maxScoredUnScannedBook = unScannedBooks.stream().max(Comparator.comparing(Book::getScore));
 
-            if (book.isPresent()) {
-                library.setMaxScoredBook(book.get().getScore());
+            if (maxScoredUnScannedBook.isPresent()) {
+                library.setMaxScoredBook(maxScoredUnScannedBook.get().getScore());
             } else {
                 library.setMaxScoredBook(0);
             }
 
         });
+    }
 
-        sortedLibraries = libraries.stream()
+    private static void sortedLibraries() {
+        sortedLibraries = sortedLibraries.stream()
                 .sorted(Comparator.comparing(Library::getFinalScore).reversed()
-                        .thenComparing(Library::getShippedBookCountPerDay)
-                        .thenComparing(Library::getMaxScoredBook))
+                        .thenComparing(Library::getShippedBookCountPerDay).reversed()
+                        .thenComparing(Library::getMaxScoredBook).reversed())
                 .collect(Collectors.toList());
     }
 }
