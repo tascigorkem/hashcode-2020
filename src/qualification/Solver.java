@@ -1,13 +1,18 @@
 package qualification;
 
+import qualification.bean.Book;
 import qualification.bean.Input;
+import qualification.bean.Library;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Solver {
 
-    public static List<String> solve(Input input) {
+    static List<Book> books;
+
+    public static List<Library> solve(Input input) {
+        books = input.getBooks();
         return new ArrayList<>();
     }
 

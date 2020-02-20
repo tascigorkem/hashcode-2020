@@ -4,22 +4,22 @@ import java.util.List;
 
 public class Output {
 
-    private Integer slidesCount;
-    private List<String> slidesLines;
+    private Integer libraryCount;
+    private List<Library> libraries;
 
-    public Integer getSlidesCount() {
-        return slidesCount;
+    public Integer getLibraryCount() {
+        return libraryCount;
     }
 
-    public void setSlidesCount(Integer slidesCount) {
-        this.slidesCount = slidesCount;
+    public void setLibraryCount(Integer libraryCount) {
+        this.libraryCount = libraryCount;
     }
 
-    public List<String> getSlidesLines() {
-        return slidesLines;
+    public List<Library> getLibraries() {
+        return libraries;
     }
 
-    public void setSlidesLines(List<String> slidesLines) {
-        this.slidesLines = slidesLines;
+    public void setLibraries(List<Library> libraries) {
+        this.libraries = libraries;
     }
 }
