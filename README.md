@@ -20,6 +20,8 @@ Total Score: 18,673,316
 
 ## Compiling
 
+##### Intellij IDEA
+
 ```bash
 File -> Project Structure -> Artifacts
 ```
@@ -29,6 +31,14 @@ Build -> Build Artifacts
 ```
 And it will create the JAR file from your project.
 
+##### Eclipse
+
+```bash
+Right click on Project -> Export -> JAR File -> Select the Java files to include
+```
+When you've done this, hit finish and you're golden. The tutorial also adds some additional tips in to make it as seamless as possible.
+
+
 ## Running
 
 ```bash
@@ -37,9 +47,9 @@ out/artifacts/hashcode_2020_jar/hashcode-2020.jar
 a_example b_lovely_landscapes c_memorable_moments d_pet_pictures e_shiny_selfies
 ```
 
-# About Us
+## About Us
 
-- <b>Team OverEngineers</b>
+##### Team OverEngineers
 
 * Görkem TAŞÇI [@tascigorkem](https://github.com/tascigorkem)
 * Furkan AKSIN [@furkanaksin](https://github.com/furkanaksin)
