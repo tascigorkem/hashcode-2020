@@ -5,7 +5,18 @@ OverEngineers  Team solution for [Google Hashcode 2020](https://codingcompetitio
 
 ## Qualification Problem
 
--
+Given a description of libraries and books available, plan which books to scan from which library to maximize the total score of all scanned books, taking into account that each library needs to be signed up before it can ship books.
+
+```bash
+A - 21
+B - 5,822,900
+C - 5,471,407
+D - 4,815,395
+E - 731,299
+F - 1,832,294
+
+Total Score: 18,673,316
+```
 
 ## Compiling
 
