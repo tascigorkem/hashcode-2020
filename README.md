@@ -44,7 +44,7 @@ When you've done this, hit finish and you're golden. The tutorial also adds some
 ```bash
 $ java -jar 
 out/artifacts/hashcode_2020_jar/hashcode-2020.jar 
-a_example b_lovely_landscapes c_memorable_moments d_pet_pictures e_shiny_selfies
+a_example b_read_on c_incunabula d_tough_choices e_so_many_books f_libraries_of_the_world
 ```
 
 ## About Us
