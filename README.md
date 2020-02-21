@@ -55,5 +55,7 @@ a_example b_lovely_landscapes c_memorable_moments d_pet_pictures e_shiny_selfies
 * Furkan AKSIN [@furkanaksin](https://github.com/furkanaksin)
 * Onur ÇELİK [@onurcelikeng](https://github.com/onurcelikeng) 
 * Kadir Şinas KAYNAK [@kadirsinas](https://github.com/kadirsinas)
+* Ezgi BOZDEMİR
+* Burak ÖZGÜR
 
 from Garanti BBVA Technology HUB

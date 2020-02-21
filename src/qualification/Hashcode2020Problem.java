@@ -11,7 +11,7 @@ public class Hashcode2020Problem {
 
     public static void main(String[] args) throws Exception {
 //        args = new String[]{"a_example", "b_read_on", "c_incunabula", "d_tough_choices", "e_so_many_books", "f_libraries_of_the_world"};
-        args = new String[]{"a_example", "b_read_on", "c_incunabula"};
+//        args = new String[]{"a_example", "b_read_on", "c_incunabula"};
 
         for (String s : args) {
             process(s);
