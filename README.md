@@ -55,7 +55,5 @@ a_example b_read_on c_incunabula d_tough_choices e_so_many_books f_libraries_of_
 * Furkan AKSIN [@furkanaksin](https://github.com/furkanaksin)
 * Onur ÇELİK [@onurcelikeng](https://github.com/onurcelikeng) 
 * Kadir Şinas KAYNAK [@kadirsinas](https://github.com/kadirsinas)
-* Ezgi BOZDEMİR
-* Burak ÖZGÜR
 
 from Garanti BBVA Technology HUB
